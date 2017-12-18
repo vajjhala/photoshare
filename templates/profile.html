@@ -1,0 +1,16 @@
+<!doctype html>
+
+<title> PhotoShare </title>
+{% if name %}
+<h1> Welcome to Photoshare, {{ name }}! </h1>
+{% endif %}
+
+{% if message %}
+<h1> {{ message }} </h1>
+{% endif %}
+
+<li><a href="/albums">My Albums</a></li>
+<li><a href="/create_album">Create New Album</a></li>
+<li><a href="/upload_photo">Upload New Photo</a></li>
+<li><a href="/friends">Friends</a></li>
+<li><a href="/logout">Logout</a></li>

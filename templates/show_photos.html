@@ -1,0 +1,99 @@
+<!doctype html>
+
+{% if params['message'] %}
+<h2>{{ params['message'] }}</h2>
+{% endif %}
+
+{% if album_name %}
+<h1> Photos from album {{ params['album_name'] }} </h1>
+{% endif %}
+
+{% if photos %}
+<ul>
+	{% for photo in photos %}
+		<img src="photos/{{ photo['photo_id'] }}" style="width:50%; height:50%"/>
+	    <br>{{ photo['caption'] }}
+		{% if photo['show_delete'] == "1" %}
+			<form method="post" action="/delete_photo">
+				<input type="submit" name="delete_photo" value="Delete">
+				<input type="text" name="photo_id" value="{{ photo['photo_id'] }}" hidden="true"> 
+				<input type="text" name="params" value="{{ params }}" hidden="true"> 
+			</form>
+		{% endif %}
+		{% if photo['show_like'] == "1" %}
+			<form method="post" action="/like_photo">
+				<input type="submit" name="like_photo" value="Like">
+				<input type="text" name="photo_id" value="{{ photo['photo_id'] }}" hidden="true"> 
+				<input type="text" name="params" value="{{ params }}" hidden="true"> 
+				<input type="text" name="photos" value="{{ photos }}" hidden="true"> 
+			</form>
+		{% endif %}
+		{% if photo['num_likes'] != "0" %}
+			<a href="{{ url_for('show_photo_details', photo = photo, photos = photos, params = params) }}">{{ photo['num_likes'] }} Likes</a>
+		{% endif %}
+		{% if photo['num_comments'] != "0" %}
+			<a href="{{ url_for('show_photo_details', photo = photo, photos = photos, params = params) }}">{{ photo['num_comments'] }} Comments</a>
+		{% endif %}
+		{% if photo['comment_text'] %}
+			Comment by {{ photo['fname'] }} at {{ photo['comment_date'] }}: {{ photo['comment_text'] }}
+		{% endif %}
+		{% if photo['show_comment_text'] == "1" %}
+			<form method="post" action="/comment_on_photo">
+				<input type='text' name='comment' placeholder='Comment'</input>
+				<input type="text" name="photo_id" value="{{ photo['photo_id'] }}" hidden="true"> 
+				<input type="text" name="params" value="{{ params }}" hidden="true"> 
+				<input type="text" name="photos" value="{{ photos }}" hidden="true"> 
+				<input type="submit" name="comment_on_photo" value="Comment">
+		</form>
+		{% endif %}
+		<br><br>
+	{% endfor %}
+</ul>
+{% endif %}
+
+{% if params['show_prev'] == "1" %}
+	{% if params['source_photos'] == "show_photos_of_album" %}
+		<a href="{{ url_for('show_photos_of_album', user_id = params['user_id'], page_id = params['prev_page'], album_id = params['album_id'], source = params['source']) }}">Previous</a>
+	{% elif params['source_photos'] == "browse_search_photos" %}
+		<form method="post" action="/browse_search_photos">
+			<input type="text" name="tags_to_search" value="{{ params['tag_names'] }}" hidden="true">
+			<input type="submit" name="submit" value="Previous" />
+			<input type="text" name="uid" value="{{ params['user_id'] }}" hidden="true">
+			<input type="text" name="page_id" value="{{ params['prev_page'] }}" hidden="true">
+			<input type="text" name="params" value="{{ params }}" hidden="true">
+		</form>
+	{% elif params['source_photos'] == "show_photos_of_user" %}
+		<a href="{{ url_for('show_photos_of_user', owner_id = params['owner_id'], uid = params['user_id'], page_id = params['prev_page'], source = 'show_top_users') }}">Previous</a>
+	{% elif params['source_photos'] == "show_comments_by_user" %}
+		<a href="{{ url_for('show_comments_by_user', owner_id = params['owner_id'], uid = params['user_id'], page_id = params['prev_page'], source = 'show_top_users') }}">Previous</a>
+	{% elif params['source_photos'] == "show_photos_user_may_like" %}
+		<a href="{{ url_for('show_photos_user_may_like', uid = params['user_id'], page_id = params['prev_page']) }}">Previous</a>
+	{% else %}
+		<a href="{{ url_for('browse_show_photos', uid = params['user_id'], page_id = params['prev_page']) }}">Previous</a>
+	{% endif %}
+{% endif %}
+
+{% if params['show_next'] == "1" %}
+	{% if params['source_photos'] == "show_photos_of_album" %}
+		<a href="{{ url_for('show_photos_of_album', user_id = params['user_id'], page_id = params['next_page'], album_id = params['album_id'], source = params['source']) }}">Next</a>
+	{% elif params['source_photos'] == "browse_search_photos" %}
+		<form method="post" action="/browse_search_photos">
+			<input type="text" name="tags_to_search" value="{{ params['tag_names'] }}" hidden="true">
+			<input type="submit" name="submit" value="Next" />
+			<input type="text" name="uid" value="{{ params['user_id'] }}" hidden="true">
+			<input type="text" name="page_id" value="{{ params['next_page'] }}" hidden="true">
+			<input type="text" name="params" value="{{ params }}" hidden="true">
+		</form>
+	{% elif params['source_photos'] == "show_photos_of_user" %}
+		<a href="{{ url_for('show_photos_of_user', owner_id = params['owner_id'], uid = params['user_id'], page_id = params['next_page'], source = 'show_top_users') }}">Next</a>
+	{% elif params['source_photos'] == "show_comments_by_user" %}
+		<a href="{{ url_for('show_comments_by_user', owner_id = params['owner_id'], uid = params['user_id'], page_id = params['next_page'], source = 'show_top_users') }}">Next</a>
+	{% elif params['source_photos'] == "show_photos_user_may_like" %}
+		<a href="{{ url_for('show_photos_user_may_like', uid = params['user_id'], page_id = params['next_page']) }}">Next</a>
+	{% else %}
+		<a href="{{ url_for('browse_show_photos', uid = params['user_id'], page_id = params['next_page']) }}">Next</a>
+	{% endif %}
+{% endif %}
+
+<br><br>
+<a href="{{ url_for(params['source'], uid = params['user_id']) }}">Back</a>

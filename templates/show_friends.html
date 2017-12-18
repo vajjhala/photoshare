@@ -1,0 +1,16 @@
+<!doctype html>
+
+{% if message %}
+<h2>{{ message }}</h2>
+{% endif %}
+
+{% if friends %}
+<ul>
+    <h2> {{ username }}'s friends:</h2>
+	{% for friend in friends %}
+        <li>{{ friend['email'] }} - {{ friend['fname'] }} {{ friend['lname'] }}</li>
+	{% endfor %}
+</ul>
+{% endif %}
+
+<a href="{{ url_for('browse', uid = user_id)  }}">Back</a>

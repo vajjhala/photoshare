@@ -1,0 +1,17 @@
+<!doctype html>
+<h1>Create an Account at Photo Share</h1>
+
+<body>
+	<form method="post" action="{{ url_for('register_new_user') }}">
+		  First name: 		<input type="text" name="firstname"><br>
+		  Last name: 		<input type="text" name="lastname"><br>
+		  Password: 		<input type="password" name="password"><br>
+		  Email: 			<input type="email" name="email"><br>
+		  Date of Birth: 	<input type="date" name="dob" value="mm/dd/yyyy"><br>
+		  Home Town: 		<input type="text" name="hometown"><br>
+		  Gender: 			<input type="radio" name="gender" value="male" checked> Male
+		  <input type="radio" name="gender" value="female"> Female
+		  <input type="radio" name="gender" value="other"> Other <br><br>
+		  <input type="submit" value="Submit">
+	</form>
+</body>

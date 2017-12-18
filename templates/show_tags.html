@@ -1,0 +1,16 @@
+<!doctype html>
+
+{% if message %}
+<h2>{{ message }}</h2>
+{% endif %}
+
+{% if tags %}
+<ul>
+	{% for tag in tags %}
+		<h4>{{ tag['tag_name'] }} with {{ tag['photo_count'] }} photos</h4>
+		<a href="{{ url_for('show_photos_of_tag', user_id = user_id, page_id = 1, tag_name = tag['tag_name'], tag_id = tag['tag_id'], source = source) }}">Show Photos</a>
+	{% endfor %}
+</ul>
+{% endif %}
+
+<a href="{{ url_for('browse', uid = user_id)  }}">Back</a>

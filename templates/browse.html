@@ -1,0 +1,23 @@
+<!doctype html>
+<h1>{{ message }} </h1>
+
+<li><a href="{{ url_for('browse_show_albums', uid = uid) }}">Browse Albums</a></li>
+<li><a href="{{ url_for('browse_show_photos', uid = uid, page_id = 1) }}">Browse Photos</a></li>
+<li><a href="{{ url_for('browse_show_tags', uid = uid) }}">Browse Photos (By Tag Popularity)</a></li>
+<li><a href="{{ url_for('show_search_photos', uid = uid) }}">Search Photos</a></li>
+<li><a href="{{ url_for('show_top_users', uid = uid) }}">Top Users</a></li>
+<li><a href="{{ url_for('show_search_comments', uid = uid) }}">Search Comments</a></li>
+
+{% if uid == "-1" %}
+	<li><a href='/register'>Sign up</a></li>
+	<li><a href='/'>Login</a></li>
+{% else %}
+	<li><a href="{{ url_for('show_user_albums', uid = uid) }}">My Albums</a></li>
+	<li><a href="{{ url_for('show_upload_photo_page', uid = uid) }}">Upload Photo</a></li>
+	<li><a href="{{ url_for('show_create_album', uid = uid) }}">Create Album</a></li>
+	<li><a href="{{ url_for('show_user_tags', uid = uid) }}">My Photos (By Tag)</a></li>
+	<li><a href="{{ url_for('show_photos_user_may_like', uid = uid, page_id = 1) }}">You May Also Like</a></li>
+    <li><a href="{{ url_for('show_user_friends', uid = uid) }}">My Friends</a></li>
+    <li><a href="{{ url_for('add_friends_page', uid = uid) }}">Add Friends</a></li>
+	<li><a href="{{ url_for('logout', uid = uid) }}">Logout</a></li>
+{% endif %}

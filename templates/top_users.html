@@ -1,0 +1,13 @@
+<!doctype html>
+<h2> Here are our top active users </h2>
+
+{% for user in users %}
+	User: {{ user['fname'] }} with 
+	{% if user['photo_count'] != 0 %}
+		 <a href="{{ url_for('show_photos_of_user', owner_id = user['uid'], uid = uid, page_id = 1, source = 'show_top_users') }}">{{ user['photo_count'] }} Photos</a>
+	{% endif %} 
+	{% if user['comment_count'] != 0 %}
+		 <a href="{{ url_for('show_comments_by_user', owner_id = user['uid'], uid = uid, page_id = 1, source = 'show_top_users') }}">{{ user['comment_count'] }} Comments</a>
+	{% endif %} <br>
+{% endfor %}
+<a href="{{ url_for('browse', uid = uid)  }}">Back</a>

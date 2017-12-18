@@ -1,0 +1,12 @@
+<!doctype html>
+<h1> Photo Share !! </h1>
+
+{% if message %}
+<h2> Error: {{ message }} </h2>
+{% endif %}
+
+{% if home %}
+<a href="/Home">Home</a>
+{% else %}
+<a href='/'>Back To Login</a>
+{% endif %}

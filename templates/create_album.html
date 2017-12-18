@@ -1,0 +1,13 @@
+<!doctype html>
+
+{% if message %}
+<h2>{{ message }}</h2>
+{% endif %}
+
+<form method="post" action="/create_album">
+	Album Name: <input type="text" name="album_name"><br><br>
+	<input type="submit" name="submit" value="Create New Album" />
+	<input type="submit" name="submit" value="Cancel" />
+	<input type="text" name="uid" value="{{ uid }}" hidden="true">
+<br>
+</form>

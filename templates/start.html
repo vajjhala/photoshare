@@ -1,0 +1,14 @@
+<!doctype html>
+<h1>!! Welcome To Photo Share !! </h1>
+
+<h3>Existing Users</h3>
+<form action='login' method='POST'>
+<input type='text' name='email' id='email' placeholder='email'></input>
+<input type='password' name='password' id='password' placeholder='password'></input>
+<input type='submit' name='submit'></input>
+</form></br>
+
+<h3>New to PhotoShare?</h3>
+<a href='/register'>Sign up</a>
+
+<h3> <a href="{{ url_for('browse', uid = -1)  }}">Check out photoshare</a></h3>

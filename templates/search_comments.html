@@ -1,0 +1,17 @@
+<!doctype html>
+
+{% if params['message'] %}
+<h2>{{ params['message'] }}</h2>
+{% endif %}
+
+<form method="post" action="/browse_search_comments">
+   Enter comment string to search for:
+   <input type="text" name="comments_to_search"><br><br>
+   <input type="submit" name="submit" value="Search Comments" />
+   <input type="submit" name="submit" value="Cancel" />
+   <input type="text" name="uid" value="{{ uid }}" hidden="true">
+   <input type="text" name="page_id" value="1" hidden="true">
+   <input type="text" name="params" value="{{ params }}" hidden="true">
+<br>
+</form>
+

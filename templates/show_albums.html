@@ -1,0 +1,28 @@
+<!doctype html>
+
+{% if message %}
+<h2>{{ message }}</h2>
+{% endif %}
+
+{% if albums %}
+<ul>
+	{% for album in albums %}
+		{% if username == album['fname'] %}
+			<h4>{{ album['album_name'] }} with {{ album['photo_count'] }} photos</h4>
+		{% else %}
+			<h4>{{ album['album_name'] }} by {{ album['fname'] }} with {{ album['photo_count'] }} photos</h4>
+		{% endif %}
+		<a href="{{ url_for('show_photos_of_album', user_id = user_id, page_id = 1, album_id = album['album_id'], source = source) }}">Show Photos</a>
+		{% if ( (user_id == album['owner_id']) and
+				(source  == "show_user_albums") ) %}
+			<form method="post" action="/delete_album">
+				<input type="submit" name="delete_album" value="Delete Album">
+				<input type="text" name="album_id" value="{{ album['album_id'] }}" hidden="true">
+				<input type="text" name="user_id" value="{{ user_id }}" hidden="true">
+			</form>
+		{% endif %}
+	{% endfor %}
+</ul>
+{% endif %}
+
+<a href="{{ url_for('browse', uid = user_id)  }}">Back</a>

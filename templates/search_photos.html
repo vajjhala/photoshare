@@ -1,0 +1,16 @@
+<!doctype html>
+
+{% if params['message'] %}
+<h2>{{ params['message'] }}</h2>
+{% endif %}
+
+<form method="post" action="/browse_search_photos">
+	Enter tags (separated by space) to search photos for:
+	<input type="text" name="tags_to_search"><br><br>
+	<input type="submit" name="submit" value="Search Photos" />
+	<input type="submit" name="submit" value="Cancel" />
+	<input type="text" name="uid" value="{{ uid }}" hidden="true">
+	<input type="text" name="page_id" value="1" hidden="true">
+	<input type="text" name="params" value="{{ params }}" hidden="true">
+<br>
+</form>

@@ -1,0 +1,28 @@
+<!doctype html>
+<h1>Add friends </h1>
+
+{% if message %}
+<h2>{{ message }}</h2>
+{% endif %}
+
+<body>
+	<form method="post" enctype="multipart/form-data" action="/add_friends">
+		Friends email address: 	<input type="text" name="friend" required="true"/><br>
+
+        <input type="text" name="uid" value="{{ uid }}" hidden="true">
+		<input type="submit" name="friend_add" value="Add">
+
+	</form>
+
+    <h2> Recommended Friends </h2>
+    {% if recommendations %}
+    <ul>
+        {% for friend in recommendations %}
+            <li> {{ friend['email'] }} - {{ friend['fname'] }} {{ friend['lname'] }}</li>
+        {% endfor %}
+    </ul>
+     {%  endif %}
+
+
+    <a href="{{ url_for('browse', uid = uid)  }}">Back</a>
+</body>

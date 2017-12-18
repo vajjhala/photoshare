@@ -1,0 +1,15 @@
+<!doctype html>
+
+{% if params['message'] %}
+<h2>{{ params['message'] }}</h2>
+{% endif %}
+
+{% if users %}
+<ul>
+   {% for user in users %}
+      <h4>{{ user['fname'] }} with {{ user['comment_count'] }} comments</h4>
+   {% endfor %}
+</ul>
+{% endif %}
+
+<a href="{{ url_for('browse', uid = params['user_id'])  }}">Back</a>

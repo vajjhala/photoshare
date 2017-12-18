@@ -1,0 +1,17 @@
+<!doctype html>
+<h1>Upload a photo at Photo Share</h1>
+
+<body>
+	<form method="post" enctype="multipart/form-data" action="/upload_photo">
+		Photo Location:		<input type="file" name="photo_location" required='true' /><br>
+		Caption:			<input type="text" name="photo_caption" required='true' /><br>
+		Tags (Space Separated): <input type="text" name="tags" /><br>
+		Album Name: 		<select name="album_id">
+							{% for album in albums %}
+							<option value="{{ album['album_id'] }}" SELECTED>{{ album['album_name'] }}</option>
+							{% endfor %}
+							</select>
+		<input type="text" name="uid" value="{{ uid }}" hidden="true">
+		<input type="submit" name="upload_photo" value="Upload">
+	</form>
+</body>
