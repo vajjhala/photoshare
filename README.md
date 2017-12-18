@@ -2,9 +2,11 @@
 
 ```python
 1) Start MySQL:
-   On my computer the command would be, the username will be different on other
-   systems.
-    mysql -u root -p 
+   On my computer the command would be:
+
+      mysql -u root -p 
+      
+   The username will be different on other systems.
     
 2) create and add the database schema:
   
