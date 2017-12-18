@@ -1,4 +1,3 @@
-# Surya Vajjhala
 import os
 import time
 
@@ -19,8 +18,9 @@ app.config['SECRET_KEY'] = 'SUPER__DUPER__SECRET__KEY'
 
 # Database initialization - cursor configured to return rows in form of
 # dictionary
-app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'mysqlpassword'
+
+# app.config['MYSQL_DATABASE_USER'] = 'root'
+# app.config['MYSQL_DATABASE_PASSWORD'] = 'password'
 app.config['MYSQL_DATABASE_DB'] = 'photosharesolution'
 app.config['MYSQL_DATABASE_HOST'] = '127.0.0.1'
 mysql = MySQL(cursorclass=DictCursor)
