@@ -42,7 +42,7 @@ Upload directory for photos: /..path to photos ../photos/
 Now you are all set to start sharing photos with friends and family !
 
 Notes:
-    The password storage system is insecure, so be vary of that. 
+    The password storage system is insecure, so be wary of that. 
 
 
 ```
