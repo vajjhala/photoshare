@@ -22,7 +22,7 @@
         app.config['MYSQL_DATABASE_PASSWORD'] = 'mysqlpassword'
   
 4) Run the server.
-     
+   
      python3 photoshare.py 
     
    Your output should look like:
